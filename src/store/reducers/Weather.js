@@ -8,7 +8,8 @@ const initialState = {
   weather_state_name: "",
   latitude: null,
   longitude: null,
-  data: {}
+  data: {},
+  droneData: {}
 };
 
 const toF = c => (c * 9) / 5 + 32;
@@ -42,10 +43,21 @@ const weatherDataRecevied = (state, action) => {
   };
 };
 
+const droneWeatherReceived = (state, action) => {
+
+  return {
+    ...state,
+    loading: false,
+    droneData: action.data
+  }
+
+}
+
 const handlers = {
   [actions.FETCH_WEATHER]: startLoading,
   [actions.WEATHER_ID_RECEIVED]: weatherIDReceived,
-  [actions.WEATHER_DATA_RECEIVED]: weatherDataRecevied
+  [actions.WEATHER_DATA_RECEIVED]: weatherDataRecevied,
+  [actions.FETCH_DRONE_WEATHER]: droneWeatherReceived
 };
 
 export default (state = initialState, action) => {
