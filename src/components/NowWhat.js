@@ -44,7 +44,15 @@ class NowWhat extends React.Component {
   }
 
   render() {
-    console.log('THis is iin NowWhat', this.props.droneData);
+    // console.log('This props loading', this.props.loading);
+    // console.log('THis is iin NowWhat', typeof (this.props.droneData));
+    // console.log('This.prop.droneData',
+    //   this.props.droneData != null ? this.props.droneData['data'] : 'empty');
+    let resultData = {};
+    if (this.props.droneData != null && this.props.droneData['data'] !== undefined) {
+      resultData = this.props.droneData.data[this.props.droneData.data.length - 1]
+      console.log(resultData)
+    }
 
     const { classes } = this.props;
     return (
@@ -71,8 +79,27 @@ class NowWhat extends React.Component {
             </ListItem>
           </List> */}
 
-          lets get the data here
 
+          <table className="table">
+            <tbody>
+              <tr>
+                <td>Temperature:</td>
+                <td>{resultData.metric || 'Reading temperature is undefined'}</td>
+              </tr>
+              <tr>
+                <td>Latitude: </td>
+                <td>{resultData.latitude || 'Reading latitude is undefined'}</td>
+              </tr>
+              <tr>
+                <td>Longitude:</td>
+                <td>{resultData.longitude || 'Reading longitude is undefined'}</td>
+              </tr>
+              <tr>
+                <td>Time:</td>
+                <td>{resultData.timestamp || 'Reading time is undefined'}</td>
+              </tr>
+            </tbody>
+          </table>
         </CardContent>
       </Card>
     );
