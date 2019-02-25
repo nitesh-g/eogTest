@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import * as actions from "../store/actions";
 import CardHeaderRaw from "@material-ui/core/CardHeader";
 import CardContent from "@material-ui/core/CardContent";
+import Moment from 'react-moment'
 // import List from "@material-ui/core/List";
 // import ListItem from "@material-ui/core/ListItem";
 // import ListItemText from "@material-ui/core/ListItemText";
@@ -96,7 +97,8 @@ class NowWhat extends React.Component {
               </tr>
               <tr>
                 <td>Time:</td>
-                <td>{resultData.timestamp || 'Reading time is undefined'}</td>
+                <td><Moment unix>{resultData.timestamp || 'Reading time is undefined'}</Moment></td>
+
               </tr>
             </tbody>
           </table>
